@@ -128,6 +128,7 @@ public class GameBoard extends View implements SensorEventListener{
 
 
     time++;
+        // I added a comment
     }
 
     @Override
