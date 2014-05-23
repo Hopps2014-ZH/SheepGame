@@ -1,6 +1,7 @@
 package com.zh.sheepgame.app;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 public class MainActivity extends Activity {
-
+Typeface font;
     private Handler frame = new Handler();
     //Divide the frame by 1000 to calculate how many times per second the screen will update.
     private static final int FRAME_RATE = 20; //50 frames per second
@@ -23,6 +24,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Handler h = new Handler();
+
+        font = Typeface.createFromAsset(getAssets(),"fonts/font.ttf");
         //((Button)findViewById(R.id.the_button)).setOnClickListener(this);
         //We can't initialize the graphics immediately because the layout manager
         //needs to run first, thus we call back in a sec.

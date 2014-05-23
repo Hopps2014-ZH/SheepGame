@@ -1,5 +1,7 @@
 package com.zh.sheepgame.app;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,13 +19,15 @@ public class Fence {
     int fHeight;
     int h, w;
     Rect leftRect, rightRect;
+    Bitmap fence;
+
 
 
     public Fence(int height, int width, int initHoleX, int speed, int type){
         holeX = initHoleX;
         fenceType = type;
         holeSpeed = speed;
-        fHeight = 30;
+        fHeight = 45;
         h=height;
         w=width;
         holeGap = (int)(w*.23);
@@ -31,6 +35,8 @@ public class Fence {
         leftRect = new Rect(0,fenceY,holeX,fenceY+fHeight);
         rightRect = new Rect(holeX+holeGap,fenceY,w,fenceY+fHeight);
         fenceY=-fHeight;
+
+
 
     }
 
@@ -50,7 +56,8 @@ public class Fence {
     }
 
     public void draw(Canvas c, Paint p){
-        p.setColor(Color.GREEN);
+
+        p.setColor(0xFF996600);
         c.drawRect(leftRect,p);
         c.drawRect(rightRect,p);
 
