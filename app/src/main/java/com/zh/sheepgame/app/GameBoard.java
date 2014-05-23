@@ -89,6 +89,8 @@ public class GameBoard extends View implements SensorEventListener{
         p.setTextSize(75);
         p.setTypeface(((MainActivity)this.getContext()).font);
 
+        canvas.drawRect(new Rect(0,0,getWidth(),getHeight()),p);
+
         if (firstDraw){
 //            Wolf wolf = new Wolf((int)sX,(int)sY,(getHeight()), getWidth());
 //            wolves.add(wolf);
@@ -96,7 +98,7 @@ public class GameBoard extends View implements SensorEventListener{
         }
         if (!lose) {
             p.setColor(Color.BLUE);
-            canvas.drawCircle(sX, sY, 20, p);
+            canvas.drawCircle(sX, sY, (int)(getWidth()*.037), p);
 
 //        Wolf wolf = wolves.get(0);
 //        wolf.draw(canvas,p);
@@ -141,13 +143,13 @@ public class GameBoard extends View implements SensorEventListener{
         int speed = 5;
         int type = 1;
         if(Rand<33){
-            speed = 4;
+            speed =  (int)(getWidth()*.0074074);
             type = 1;
         }else if(Rand<66){
-            speed = 4;
+            speed = (int)(getWidth()*.0074074);
             type = 2;
         }else{
-            speed=6;
+            speed=(int)(getWidth()*.011111);
             type = 3;
         }
 
@@ -160,9 +162,9 @@ public class GameBoard extends View implements SensorEventListener{
         Fence f = fences.get(i);
         f.update();
 
-        Rect sheepBox = new Rect((int)(sX-10),(int)(sY-10),(int)(sX+10),(int)(sY+10));
-        if ((sheepBox.intersect(f.getLeftRect()) || sheepBox.intersect(f.getRightRect())) && (sY)>=(f.getFenceY()+f.getfHeight()-8)){
-            sY=f.getFenceY() + f.getfHeight() +20;
+        Rect sheepBox = new Rect((int)(sX-(int)(getWidth()*.0185)),(int)(sY-(int)(getWidth()*.0185)),(int)(sX+(int)(getWidth()*.0185)),(int)(sY+(int)(getWidth()*.0185)));
+        if ((sheepBox.intersect(f.getLeftRect()) || sheepBox.intersect(f.getRightRect())) && (sY)>=(f.getFenceY()+f.getfHeight()-(int)(.014815 * getWidth()))){
+            sY=f.getFenceY() + f.getfHeight() +(int)(getWidth()*.037);
         }
 
         if (f.getFenceY()>getHeight()){
@@ -183,8 +185,8 @@ public class GameBoard extends View implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         accX = sensorEvent.values[0];
-        if (!((accX>=0 && sX<getWidth()/8) ||(accX<=0 && sX+20>7*(getWidth()/8)))){
-        vX = -4*accX;
+        if (!((accX>=0 && sX<getWidth()/8) ||(accX<=0 && sX+(int)(getWidth()*.037)>7*(getWidth()/8)))){
+        vX = -(int)(getWidth()*.007407407)*accX;
 
         }else{
             vX = 0;

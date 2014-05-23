@@ -27,7 +27,7 @@ public class Fence {
         holeX = initHoleX;
         fenceType = type;
         holeSpeed = speed;
-        fHeight = 45;
+        fHeight = (int)(width*.08333333);
         h=height;
         w=width;
         holeGap = (int)(w*.23);
@@ -41,7 +41,7 @@ public class Fence {
     }
 
     public void update(){
-        fenceY+=6;
+        fenceY+=(int)(w*.0111111111);
 
         if (!((holeSpeed<=0 && holeX<w/8) ||(holeSpeed>=0 && holeX+holeGap>7*(w/8)))){
             holeX+=holeSpeed;
@@ -57,7 +57,7 @@ public class Fence {
 
     public void draw(Canvas c, Paint p){
 
-        p.setColor(0xFF996600);
+        p.setColor(Color.GREEN);
         c.drawRect(leftRect,p);
         c.drawRect(rightRect,p);
 
