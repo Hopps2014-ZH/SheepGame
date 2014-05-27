@@ -136,28 +136,7 @@ public class GameBoard extends View implements SensorEventListener{
 
 
 
-    if(time>70){
-        int w = getWidth();
-        int h = getHeight();
-        int Rand = (int)(Math.random()*100);
-        int holeX = (int)(w/8 + (Math.random()*(w-w/8)));
-        int speed = 5;
-        int type = 1;
-        if(Rand<33){
-            speed = 4;
-            type = 1;
-        }else if(Rand<66){
-            speed = 4;
-            type = 2;
-        }else{
-            speed=6;
-            type = 3;
-        }
 
-        Fence f = new Fence(h,w,holeX,speed,type, 80);
-        fences.add(f);
-        time = 0;
-    }
 
     for(int i = 0; i < fences.size(); i++){
         Fence f = fences.get(i);
