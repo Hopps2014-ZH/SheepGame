@@ -51,8 +51,6 @@ public class GameBoard extends View implements SensorEventListener{
 
 
         p = new Paint();
-        sY = (float)450.0;
-        sX= 400;
         time = 0;
         lose = false;
   //      wolves = new ArrayList<Wolf>();
