@@ -30,7 +30,10 @@ public class GameBoard extends View implements SensorEventListener{
     float sY;
     float sX;
     int time;
+    int numberFences;
     int fenceCount;
+    Levels l;
+    int updateNum;
     Boolean lose, firstUpdate, firstDraw;
     ArrayList<Fence>fences;
     Bitmap resetBtn, fenceIMG;
@@ -46,6 +49,11 @@ public class GameBoard extends View implements SensorEventListener{
         sensorManager.registerListener(this,Accelerometer,SensorManager.SENSOR_DELAY_GAME);
         fences = new ArrayList<Fence>();
 
+        //TODO: Picking levels from another class
+        l = new Levels(1);
+        numberFences = 10;
+
+        updateNum=0;
 
         resetBtn = BitmapFactory.decodeResource(getResources(),R.drawable.resetbutton);
         fenceIMG = BitmapFactory.decodeResource(getResources(),R.drawable.fence);
@@ -89,6 +97,7 @@ public class GameBoard extends View implements SensorEventListener{
         p.setStrokeWidth(1);
         p.setTextSize(75);
         p.setTypeface(((MainActivity)this.getContext()).font);
+        l.update(getHeight(),getWidth());
 
         if (firstDraw){
 //            Wolf wolf = new Wolf((int)sX,(int)sY,(getHeight()), getWidth());
@@ -123,6 +132,15 @@ public class GameBoard extends View implements SensorEventListener{
 
     //This will get called everytime there is a frame update, right before the drawing.
     synchronized public void update(){
+
+     if (updateNum == 2){
+         numberFences=l.getNumberFences();
+     }
+    if (time%70 == 0  && time !=0 && (time/70)<=numberFences ){
+        Fence f = l.call();
+        fences.add(f);
+    }
+
     sX+=vX;
     if (firstUpdate){
 
@@ -159,7 +177,7 @@ public class GameBoard extends View implements SensorEventListener{
 
     time++;
     fenceCount++;
-
+    updateNum++;
 
     }
 
