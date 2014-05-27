@@ -15,7 +15,6 @@ public class Fence {
     int fenceY;
     int holeSpeed;
     int fenceType;
-    int fenceDelay;
     int holeGap;
     int fHeight;
     int h, w;
@@ -24,7 +23,7 @@ public class Fence {
 
 
 
-    public Fence(int height, int width, int initHoleX, int speed, int type, int time){
+    public Fence(int height, int width, int initHoleX, int speed, int type){
         holeX = initHoleX;
         fenceType = type;
         holeSpeed = speed;
@@ -32,7 +31,6 @@ public class Fence {
         h=height;
         w=width;
         holeGap = (int)(w*.23);
-        fenceDelay = time;
         leftRect = new Rect(0,fenceY,holeX,fenceY+fHeight);
         rightRect = new Rect(holeX+holeGap,fenceY,w,fenceY+fHeight);
         fenceY=-fHeight;
@@ -77,6 +75,5 @@ public class Fence {
     public int getFenceY(){return fenceY;}
     public Rect getLeftRect(){return leftRect;}
     public Rect getRightRect(){return rightRect;}
-    public int getFenceDelay(){return fenceDelay;}
 
 }
