@@ -30,6 +30,7 @@ public class GameBoard extends View implements SensorEventListener{
     float sY;
     float sX;
     int time;
+    int fenceCount;
     Boolean lose, firstUpdate, firstDraw;
     ArrayList<Fence>fences;
     Bitmap resetBtn, fenceIMG;
@@ -133,6 +134,8 @@ public class GameBoard extends View implements SensorEventListener{
 
 
 
+
+
     if(time>70){
         int w = getWidth();
         int h = getHeight();
@@ -151,7 +154,7 @@ public class GameBoard extends View implements SensorEventListener{
             type = 3;
         }
 
-        Fence f = new Fence(h,w,holeX,speed,type);
+        Fence f = new Fence(h,w,holeX,speed,type, 80);
         fences.add(f);
         time = 0;
     }
@@ -176,6 +179,7 @@ public class GameBoard extends View implements SensorEventListener{
     }
 
     time++;
+    fenceCount++;
 
 
     }
